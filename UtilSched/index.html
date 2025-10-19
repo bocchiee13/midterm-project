@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UtiliSched - BEED DMMMSU MLUC Scheduler</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo-container">
+                <h1>UtiliSched</h1>
+                <p>Automated Scheduler for BEED DMMMSU MLUC</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#scheduler">Scheduler</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#timeline">Timeline</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <h1>UtiliSched: Automated Room Utilization Application</h1>
+                <p>An intelligent scheduling system designed to optimize room utilization within the BEED-BECED College Building at DMMMSU - MLUC</p>
+            </div>
+        </section>
+
+        <section id="scheduler" class="section">
+            <div class="container">
+                <div class="course-management">
+                    <div class="course-form">
+                        <h2>Add New Course</h2>
+                        <div class="form-group">
+                            <label for="courseCode">Course Code/ID:</label>
+                            <input type="text" id="courseCode" placeholder="e.g., BEED101">
+                        </div>
+                        <div class="form-group">
+                            <label for="courseName">Course Name:</label>
+                            <input type="text" id="courseName" placeholder="e.g., Introduction to Education">
+                        </div>
+                        <div class="form-group">
+                            <label for="profName">Professor Name:</label>
+                            <input type="text" id="profName" placeholder="e.g., Dr. Smith">
+                        </div>
+                        <div class="form-group">
+                            <label for="room">Room:</label>
+                            <input type="text" id="room" placeholder="e.g., Room 101">
+                        </div>
+                        <div class="form-group">
+                            <label for="units">Units:</label>
+                            <input type="number" id="units" min="1" max="5" value="3">
+                        </div>
+                        <div class="form-group">
+                            <label for="duration">Duration (minutes):</label>
+                            <select id="duration">
+                                <option value="60">1 hour (60 minutes)</option>
+                                <option value="90">1 hour 30 minutes (90 minutes)</option>
+                                <option value="120">2 hours (120 minutes)</option>
+                                <option value="150">2 hours 30 minutes (150 minutes)</option>
+                                <option value="180">3 hours (180 minutes)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="yearLevel">Year Level:</label>
+                            <select id="yearLevel">
+                                <option value="1">1st Year</option>
+                                <option value="2">2nd Year</option>
+                                <option value="3">3rd Year</option>
+                                <option value="4">4th Year</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="courseColor">Course Color:</label>
+                            <div class="color-selector">
+                                <input type="color" id="courseColor" value="#3498db">
+                                <button id="autoColorBtn" type="button" class="btn secondary-btn" title="Generate random color">
+                                    <i class="fas fa-random"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <button id="addCourseBtn" class="btn primary-btn">Add Course</button>
+                    </div>
+
+                    <div class="course-list-container">
+                        <h2>Course List</h2>
+                        <div class="year-tabs">
+                            <div class="year-tab active" data-year="1">1st Year</div>
+                            <div class="year-tab" data-year="2">2nd Year</div>
+                            <div class="year-tab" data-year="3">3rd Year</div>
+                            <div class="year-tab" data-year="4">4th Year</div>
+                        </div>
+                        <div id="courseList" class="course-list">
+                            <!-- Course items will be added here dynamically -->
+                            <div class="empty-state">No courses added yet. Use the form to add courses.</div>
+                        </div>
+                        <button id="automateScheduleBtn" class="btn primary-btn">Schedules</button>
+                        <button id="clearScheduleBtn" class="btn secondary-btn">Clear Schedule</button>
+                    </div>
+                </div>
+
+                <div class="schedule-container">
+                    <h2>Weekly Schedule</h2>
+                    <div class="schedule-table-container">
+                        <table id="scheduleTable" class="schedule-table">
+                            <thead>
+                                <tr>
+                                    <th class="time-header">Time/Day</th>
+                                    <th>Monday</th>
+                                    <th>Tuesday</th>
+                                    <th>Wednesday</th>
+                                    <th>Thursday</th>
+                                    <th>Friday</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Time slots from 8:00 to 17:00 -->
+                                <!-- Will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>About the Project</h2>
+                </div>
+                <div class="about">
+                    <div class="about-content">
+                        <p>UtiliSched is a research study conducted by students from the College of Information Technology at Don Mariano Marcos Memorial State University, Mid–La Union Campus (DMMMSU - MLUC).</p>
+                        <p>This project aims to develop a web-based scheduling system that optimizes room utilization within the BEED-BECED College Building. Our goal is to create an efficient and automated platform that enables seamless scheduling, reduces conflicts in room assignments, and enhances overall management of available facilities.</p>
+                        <p>The system will feature real-time updates, intelligent scheduling algorithms, and user-friendly interfaces to assist administrators, faculty, and students in ensuring optimal usage of available rooms.</p>
+                    </div>
+                    <div class="about-image">
+                        <img src="/api/placeholder/600/400" alt="DMMMSU - MLUC Campus Building">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="features" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Key Features</h2>
+                </div>
+                <div class="features">
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <h3>Automated Scheduling</h3>
+                        <p>AI-powered scheduling that automatically assigns rooms based on requirements and availability.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📅</div>
+                        <h3>Intelligent Scheduling</h3>
+                        <p>Advanced algorithms that optimize room assignments based on capacity, equipment, and availability.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Real-Time Updates</h3>
+                        <p>Instant notifications and updates when scheduling changes occur to reduce conflicts.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔍</div>
+                        <h3>Comprehensive Search</h3>
+                        <p>Quick search functionality to find available rooms based on capacity, time, and equipment needs.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Analytics Dashboard</h3>
+                        <p>Visualization of room utilization statistics to identify trends and opportunities for improvement.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h3>Role-Based Access</h3>
+                        <p>Different permission levels for administrators, faculty, and students to ensure proper system usage.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="timeline" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Project Timeline</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <h3>Project Proposal</h3>
+                            <p>Submit project proposal and secure sponsorship. Begin requirements gathering and analysis.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <h3>System Design</h3>
+                            <p>Design database schema, user interfaces, and system architecture based on collected requirements.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <h3>Development Phase</h3>
+                            <p>Build core system functionality including scheduling algorithms and user interfaces.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <h3>Testing & Feedback</h3>
+                            <p>Conduct testing with stakeholders and incorporate feedback for system improvements.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <h3>Final Implementation</h3>
+                            <p>Deploy the system and provide documentation and training for system users.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="team" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Our Team</h2>
+                </div>
+                <div class="team">
+                    <div class="team-member">
+                        <img src="/api/placeholder/150/150" alt="Team Member">
+                        <h3>Student Name</h3>
+                        <p>Project Lead</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="/api/placeholder/150/150" alt="Team Member">
+                        <h3>Student Name</h3>
+                        <p>Backend Developer</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="/api/placeholder/150/150" alt="Team Member">
+                        <h3>Student Name</h3>
+                        <p>Frontend Developer</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="/api/placeholder/150/150" alt="Team Member">
+                        <h3>Student Name</h3>
+                        <p>Database Administrator</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Contact Us</h2>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" class="form-control" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" class="form-control" placeholder="Your Email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" class="form-control" placeholder="Subject" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" class="form-control" placeholder="Your Message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn primary-btn">Send Message</button>
+                        </form>
+                    </div>
+                    <div class="address">
+                        <h3>Visit Us</h3>
+                        <p><span class="address-icon">📍</span> Don Mariano Marcos Memorial State University</p>
+                        <p>Mid–La Union Campus (DMMMSU - MLUC)</p>
+                        <p>College of Information Technology</p>
+                        <p><span class="address-icon">📞</span> (123) 456-7890</p>
+                        <p><span class="address-icon">✉️</span> utilischedproject@example.com</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#scheduler">Scheduler</a>
+                <a href="#about">About</a>
+                <a href="#features">Features</a>
+                <a href="#timeline">Timeline</a>
+                <a href="#team">Team</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <p>&copy; 2025 UtiliSched - BEED DMMMSU MLUC Scheduler</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</body>
+</html>
